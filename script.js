@@ -77,10 +77,9 @@ function addDigit(value, digit) {
 function addOperator(op, symbol) {
   if (operands[0] === "") return;
 
-  if (currentOperand === 0) 
+  if (currentOperand === 0)
     perviousOperandScreen.innerText = currentOperandScreen.innerText;
-  else 
-    equals();
+  else equals();
 
   if (operands[0] === "") return;
 
@@ -102,7 +101,7 @@ function equals() {
       : operator === "/"
       ? +operands[0] / +operands[1]
       : operator === "^"
-      ? Math.pow(+operands[0], +operands[1]) 
+      ? Math.pow(+operands[0], +operands[1])
       : +operands[0];
 
   operands = ["", ""];
@@ -132,6 +131,21 @@ function clear() {
 function dash() {
   if (operands[0] === "" || (operator !== "" && operands[1] === ""))
     addDigit("-", "-"); // negative
-  else
-    addOperator("-", "-"); // subtraction
+  else addOperator("-", "-"); // subtraction
+}
+
+function backspace() {
+  currentOperandScreen.innerText = currentOperandScreen.innerText.slice(0, -1);
+  perviousOperandScreen.innerText = perviousOperandScreen.innerText.slice(
+    0,
+    -1
+  );
+
+  if (operands[currentOperand].length > 0)
+    operands[currentOperand] = operands[currentOperand].slice(0, -1);
+  else if (currentOperand === 1 && operands[1] === "") {
+    operator = "";
+    currentOperand = 0;
+    currentOperandScreen.innerText = perviousOperandScreen.innerText;
+  }
 }
