@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الحــاسبة 🖩</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -16,34 +17,34 @@
     </div>
 
     <div class="screen">
-      <div class="pervious-operand">٥٣٨÷</div>
-      <div class="current-operand">-٣٩٦</div>
+      <div class="pervious-operand" id="pervious-operand">٥٣٨÷</div>
+      <div class="current-operand" id="current-operand">-٣٩٦</div>
     </div>
 
     <div class="keypad">
-      <button class="keypad-key num-key zero-key">٠</button>
-      <button class="keypad-key num-key">,</button>
-      <button class="keypad-key op-key">+</button>
+      <button class="keypad-key num-key zero-key" data-value="0">٠</button>
+      <button class="keypad-key num-key" data-value=".">,</button>
+      <button class="keypad-key op-key" data-op="+">+</button>
 
-      <button class="keypad-key num-key">١</button>
-      <button class="keypad-key num-key">٢</button>
-      <button class="keypad-key num-key">٣</button>
-      <button class="keypad-key op-key">-</button>
+      <button class="keypad-key num-key" data-value="1">١</button>
+      <button class="keypad-key num-key" data-value="2">٢</button>
+      <button class="keypad-key num-key" data-value="3">٣</button>
+      <button class="keypad-key op-key" id="minus">-</button>
 
-      <button class="keypad-key num-key">٤</button>
-      <button class="keypad-key num-key">٥</button>
-      <button class="keypad-key num-key">٦</button>
-      <button class="keypad-key op-key">×</button>
+      <button class="keypad-key num-key" data-value="4">٤</button>
+      <button class="keypad-key num-key" data-value="5">٥</button>
+      <button class="keypad-key num-key" data-value="6">٦</button>
+      <button class="keypad-key op-key" data-op="*">×</button>
 
-      <button class="keypad-key num-key">٧</button>
-      <button class="keypad-key num-key">٨</button>
-      <button class="keypad-key num-key">٩</button>
-      <button class="keypad-key op-key">÷</button>
+      <button class="keypad-key num-key" data-value="7">٧</button>
+      <button class="keypad-key num-key" data-value="8">٨</button>
+      <button class="keypad-key num-key" data-value="9">٩</button>
+      <button class="keypad-key op-key" data-op="/">÷</button>
 
-      <button class="keypad-key control-key">اِمْحِ</button>
-      <button class="keypad-key control-key">⌫</button>
-      <button class="keypad-key op-key">=</button>
-      <button class="keypad-key op-key">^</button>
+      <button class="keypad-key control-key" id="clear">اِمْحِ</button>
+      <button class="keypad-key control-key" id="backspace">⌫</button>
+      <button class="keypad-key op-key" id="equals">=</button>
+      <button class="keypad-key op-key" data-op="^">^</button>
     </div>
 </body>
 
