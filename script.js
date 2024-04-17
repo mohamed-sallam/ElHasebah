@@ -82,6 +82,8 @@ function addOperator(op, symbol) {
   else 
     equals();
 
+  if (operands[0] === "") return;
+
   isResult = false;
   perviousOperandScreen.innerText += symbol;
   operator = op;
@@ -102,6 +104,7 @@ function equals() {
       : NaN;
 
   operands = ["", ""];
+  console.log("1=>" + operands[0]);
   operator = "";
   currentOperand = 0;
   isResult = true;
