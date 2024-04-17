@@ -101,10 +101,9 @@ function equals() {
       ? +operands[0] / +operands[1]
       : operator === "^"
       ? Math.pow(+operands[0], +operands[1])
-      : NaN;
+      : +operands[0];
 
   operands = ["", ""];
-  console.log("1=>" + operands[0]);
   operator = "";
   currentOperand = 0;
   isResult = true;
