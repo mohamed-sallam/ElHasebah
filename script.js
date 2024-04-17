@@ -52,19 +52,20 @@ let currentOperand = 0;
 let operands = ["", ""];
 let operator = "";
 let isResult = false;
+let isFloatingPoint = false;
 
 const perviousOperandScreen = document.querySelector("#pervious-operand");
 const currentOperandScreen = document.querySelector("#current-operand");
 
 function addDigit(value, digit) {
-  if (isCurrentOperandOverflow()) return;
+  if (isCurrentOperandOverflow() || (isFloatingPoint && value === ".")) return;
 
-  if (isResult) {
-    operands = ["", ""];
-    currentOperandScreen.innerText = "";
-    perviousOperandScreen.innerText = "";
-    isResult = false;
-  }
+  if (isResult)
+    clear();
+  
+  if (value === ".")
+    isFloatingPoint = true;
+
   currentOperandScreen.innerText += digit;
   perviousOperandScreen.innerText += digit;
   operands[currentOperand] += value;
@@ -79,6 +80,7 @@ function addOperator(op, symbol) {
 
   if (operands[0] === "") return;
 
+  isFloatingPoint = false;
   isResult = false;
   perviousOperandScreen.innerText += symbol;
   operator = op;
@@ -103,6 +105,7 @@ function equals() {
   operands = ["", ""];
   operator = "";
   currentOperand = 0;
+  isFloatingPoint = false;
   isResult = true;
   if (!Number.isFinite(result)) {
     currentOperandScreen.innerText = "خطأ حسابي";
@@ -127,6 +130,7 @@ function clear() {
   operator = "";
   currentOperand = 0;
   isResult = false;
+  isFloatingPoint = false;
   currentOperandScreen.innerText = "";
   perviousOperandScreen.innerText = "";
 }
@@ -156,6 +160,8 @@ function backspace() {
     currentOperand = 0;
     currentOperandScreen.innerText = perviousOperandScreen.innerText;
   }
+
+  isFloatingPoint = operands[currentOperand].includes(".");
 }
 
 // Source: https://stackoverflow.com/a/62272697/6646715
