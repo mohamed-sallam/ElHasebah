@@ -20,7 +20,7 @@ document.querySelector("#backspace").addEventListener("click", backspace);
 
 document.querySelector("#equals").addEventListener("click", equals);
 
-document.querySelector("#minus").addEventListener("click", minus);
+document.querySelector("#dash").addEventListener("click", dash);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "/") event.preventDefault();
@@ -95,12 +95,14 @@ function equals() {
   const result =
     operator === "+"
       ? +operands[0] + +operands[1]
+      : operator === "-"
+      ? +operands[0] - +operands[1]
       : operator === "*"
       ? +operands[0] * +operands[1]
       : operator === "/"
       ? +operands[0] / +operands[1]
       : operator === "^"
-      ? Math.pow(+operands[0], +operands[1])
+      ? Math.pow(+operands[0], +operands[1]) 
       : +operands[0];
 
   operands = ["", ""];
@@ -125,4 +127,11 @@ function clear() {
   isResult = false;
   currentOperandScreen.innerText = "";
   perviousOperandScreen.innerText = "";
+}
+
+function dash() {
+  if (operands[0] === "" || (operator !== "" && operands[1] === ""))
+    addDigit("-", "-"); // negative
+  else
+    addOperator("-", "-"); // subtraction
 }
