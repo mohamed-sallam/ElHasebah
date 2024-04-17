@@ -21,16 +21,15 @@ document.querySelector("#dash").addEventListener("click", dash);
 document.addEventListener("keydown", (event) => {
   if (event.key === "/") event.preventDefault();
 
-  getKeyButton(event.key)?.classList.add("active");
-});
-document.addEventListener("keyup", (event) => {
   const btn = getKeyButton(event.key);
-
   if (!btn) return;
 
   btn.click();
-  btn.classList.remove("active");
+  btn.classList.add("active");
 });
+document.addEventListener("keyup", (event) =>
+  getKeyButton(event.key)?.classList.remove("active")
+);
 
 const getKeyButton = (key) =>
   document.querySelector(
