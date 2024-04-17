@@ -138,6 +138,11 @@ function dash() {
 }
 
 function backspace() {
+  if (isResult) {
+    clear();
+    return;
+  }
+
   currentOperandScreen.innerText = currentOperandScreen.innerText.slice(0, -1);
   perviousOperandScreen.innerText = perviousOperandScreen.innerText.slice(
     0,
