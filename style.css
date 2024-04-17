@@ -41,6 +41,18 @@ body {
   }
 }
 
+@media (min-width: 620px) {
+  @media (max-height: 580px) {
+    .calculator {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translate(0, 0);
+    }
+  }
+}
+
 @media (min-height: 460px) {
   .calculator {
     max-height: 100vh;
