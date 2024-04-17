@@ -5,7 +5,6 @@ document
       addDigit(btn.getAttribute("data-value"), btn.innerText)
     )
   );
-
 document
   .querySelectorAll(".op-key[data-op]")
   .forEach((btn) =>
@@ -15,11 +14,8 @@ document
   );
 
 document.querySelector("#clear").addEventListener("click", clear);
-
 document.querySelector("#backspace").addEventListener("click", backspace);
-
 document.querySelector("#equals").addEventListener("click", equals);
-
 document.querySelector("#dash").addEventListener("click", dash);
 
 document.addEventListener("keydown", (event) => {
@@ -27,7 +23,6 @@ document.addEventListener("keydown", (event) => {
 
   getKeyButton(event.key)?.classList.add("active");
 });
-
 document.addEventListener("keyup", (event) => {
   const btn = getKeyButton(event.key);
 
@@ -50,7 +45,7 @@ const getKeyButton = (key) =>
       : key === "Backspace"
       ? "#backspace"
       : key === "-"
-      ? "#minus"
+      ? "#dash"
       : null
   );
 
