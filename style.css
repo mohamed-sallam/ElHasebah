@@ -78,7 +78,13 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  overflow: clip;
+  background-color: var(--dark-purple);
+}
+
+@media (max-width: 410px) {
+  .screen {
+    overflow-x: scroll;
+  }
 }
 
 .pervious-operand {
@@ -93,8 +99,7 @@ body {
 
 .pervious-operand,
 .current-operand {
-  width: 100%;
-  background-color: var(--dark-purple);
+  width: fit-content;
   text-align: right;
   color: var(--light-purple);
   padding: 0 0.5rem;

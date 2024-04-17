@@ -58,6 +58,8 @@ const perviousOperandScreen = document.querySelector("#pervious-operand");
 const currentOperandScreen = document.querySelector("#current-operand");
 
 function addDigit(value, digit) {
+  if (isCurrentOperandOverflow()) return;
+
   if (isResult) {
     operands = ["", ""];
     currentOperandScreen.innerText = "";
@@ -112,6 +114,13 @@ function equals() {
   currentOperandScreen.innerText = arResult;
   perviousOperandScreen.innerText = arResult;
   operands[0] = result.toString();
+
+  if (isPerviousOperandOverflow() || isCurrentOperandOverflow()) {
+    clear();
+    currentOperandScreen.innerText = "الرقم طويل";
+    isResult = true;
+    return;
+  }
 }
 
 function clear() {
@@ -144,3 +153,12 @@ function backspace() {
     currentOperandScreen.innerText = perviousOperandScreen.innerText;
   }
 }
+
+// Source: https://stackoverflow.com/a/62272697/6646715
+const isCurrentOperandOverflow = () =>
+  currentOperandScreen.getBoundingClientRect().width >
+  currentOperandScreen.parentElement.getBoundingClientRect().width;
+
+const isPerviousOperandOverflow = () =>
+  perviousOperandScreen.getBoundingClientRect().width >
+  perviousOperandScreen.parentElement.getBoundingClientRect().width;
