@@ -19,7 +19,6 @@ body {
   align-items: center;
   max-width: 375px;
   height: 550px;
-  max-height: 100vh;
   border-radius: 12px;
   background-color: var(--light-gray);
   border: 16px solid var(--light-gray);
@@ -39,6 +38,12 @@ body {
     left: 0;
     right: 0;
     transform: translate(0, 0);
+  }
+}
+
+@media (min-height: 460px) {
+  .calculator {
+    max-height: 100vh;
   }
 }
 
@@ -113,6 +118,14 @@ body {
 
 .keypad-key:hover {
   filter: brightness(115%);
+}
+
+.keypad-key:active {
+  filter: brightness(90%);
+}
+
+.keypad-key.active {
+  filter: brightness(90%);
 }
 
 .zero-key {
