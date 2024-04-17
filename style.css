@@ -82,12 +82,12 @@ body {
 }
 
 .pervious-operand {
-  max-height: 30px;
+  height: 30px;
   font-size: 1.5rem;
 }
 
 .current-operand {
-  max-height: 90px;
+  height: 90px;
   font-size: 3.6rem;
 }
 

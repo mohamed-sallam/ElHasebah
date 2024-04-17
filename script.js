@@ -53,3 +53,74 @@ const getKeyButton = (key) =>
       ? "#minus"
       : null
   );
+
+let currentOperand = 0;
+let operands = ["", ""];
+let operator = "";
+let isResult = false;
+
+const perviousOperandScreen = document.querySelector("#pervious-operand");
+const currentOperandScreen = document.querySelector("#current-operand");
+
+function addDigit(value, digit) {
+  if (isResult) {
+    operands = ["", ""];
+    currentOperandScreen.innerText = "";
+    perviousOperandScreen.innerText = "";
+    isResult = false;
+  }
+  currentOperandScreen.innerText += digit;
+  perviousOperandScreen.innerText += digit;
+  operands[currentOperand] += value;
+}
+
+function addOperator(op, symbol) {
+  if (operands[0] === "") return;
+
+  if (currentOperand === 0) 
+    perviousOperandScreen.innerText = currentOperandScreen.innerText;
+  else 
+    equals();
+
+  isResult = false;
+  perviousOperandScreen.innerText += symbol;
+  operator = op;
+  currentOperand = 1;
+  currentOperandScreen.innerText = "";
+}
+
+function equals() {
+  const result =
+    operator === "+"
+      ? +operands[0] + +operands[1]
+      : operator === "*"
+      ? +operands[0] * +operands[1]
+      : operator === "/"
+      ? +operands[0] / +operands[1]
+      : operator === "^"
+      ? Math.pow(+operands[0], +operands[1])
+      : NaN;
+
+  operands = ["", ""];
+  operator = "";
+  currentOperand = 0;
+  isResult = true;
+  if (!Number.isFinite(result)) {
+    currentOperandScreen.innerText = "خطأ حسابي";
+    perviousOperandScreen.innerText = "";
+    return;
+  }
+  let arResult = result.toLocaleString("ar-EG").replaceAll("٬", "");
+  currentOperandScreen.innerText = arResult;
+  perviousOperandScreen.innerText = arResult;
+  operands[0] = result.toString();
+}
+
+function clear() {
+  operands = ["", ""];
+  operator = "";
+  currentOperand = 0;
+  isResult = false;
+  currentOperandScreen.innerText = "";
+  perviousOperandScreen.innerText = "";
+}
